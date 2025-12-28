@@ -1,0 +1,28 @@
+{
+    "name": "otto",
+    "dark": true,
+    "colors": {
+        "foreground": "#ffffff",
+        "background": "#2c3746",
+        "cursor_foreground": "#2c3746", 
+        "cursor_background": "#ffffff",
+        "selection_foreground": null, 
+        "selection_background": "#344153", 
+        "black": "#176ef1",
+        "red": "#fd3762",
+        "green": "#2aacaa",
+        "yellow": "#f7c067",
+        "blue": "#f77067",
+        "magenta": "#cb75f7",
+        "cyan": "#5cc6d1",
+        "white": "#9cacad",
+        "bright_black": "#156bdc",
+        "bright_red": "#f22c57",
+        "bright_green": "#28a09c",
+        "bright_yellow": "#ddab5c",
+        "bright_blue": "#df635d",
+        "bright_magenta": "#af69dd",
+        "bright_cyan": "#4fb0b3",
+        "bright_white": "#879596"
+    }
+}

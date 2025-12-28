@@ -1,0 +1,293 @@
+// Default
+// {
+//   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+//   "modules": [
+//     "title",
+//     "separator",
+//     "os",
+//     "host",
+//     "kernel",
+//     "uptime",
+//     "packages",
+//     "shell",
+//     "display",
+//     "de",
+//     "wm",
+//     "wmtheme",
+//     "theme",
+//     "icons",
+//     "font",
+//     "cursor",
+//     "terminal",
+//     "terminalfont",
+//     "cpu",
+//     "gpu",
+//     "memory",
+//     "swap",
+//     "disk",
+//     "localip",
+//     "battery",
+//     "poweradapter",
+//     "locale",
+//     "break",
+//     "colors"
+//   ]
+// }
+
+// // Kitty
+// {
+//   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+//   "logo": {
+//     "type": "kitty-direct",
+//     "source": "~/.config/fastfetch/media/pixai-1876104913338174816.png",
+//     "width": 38,
+//     "height": 19,
+//     "padding": {
+//       //   "right": 10,
+//       "top": 3,
+//       "left": 1
+//     }
+//   },
+//   "general": {
+//     // "multithreading": true
+//   },
+//   "display": {
+//     "separator": "➜   "
+//   },
+//   "modules": [
+//     "break",
+//     {
+//       "type": "title",
+//       "format": "                                {6}{7}{8}"
+//     },
+//     "break",
+//     {
+//       "type": "custom",
+//       "format": "┌──────────────────────────────────────────────────────────────────────────────┐" // `\u001b` is `\033`, or `\e`
+//     },
+//     "break",
+//     {
+//       "key": "     OS           ",
+//       "keyColor": "green",
+//       "type": "os"
+//     },
+//     {
+//       "key": "    󰌢 Machine      ",
+//       "keyColor": "cyan",
+//       "type": "host"
+//     },
+//     {
+//       "key": "     Kernel       ",
+//       "keyColor": "blue",
+//       "type": "kernel"
+//     },
+//     {
+//       "key": "    󰅐 Uptime       ",
+//       "keyColor": "green",
+//       "type": "uptime"
+//     },
+//     {
+//       "key": "     Packages     ",
+//       "keyColor": "cyan",
+//       "type": "packages"
+//     },
+//     {
+//       "key": "     WM           ",
+//       "keyColor": "blue",
+//       "type": "wm"
+//     },
+//     {
+//       "key": "     Shell        ",
+//       "keyColor": "green",
+//       "type": "shell"
+//     },
+//     {
+//       "key": "     Terminal     ",
+//       "keyColor": "cyan",
+//       "type": "terminal"
+//     },
+//     {
+//       "key": "     Font         ",
+//       "keyColor": "blue",
+//       "type": "terminalfont"
+//     },
+//     {
+//       "key": "    󰻠 CPU          ",
+//       "keyColor": "green",
+//       "type": "cpu"
+//     },
+//     // {
+//     //   "key": "    󰍛 GPU          ",
+//     //   "keyColor": "cyan",
+//     //   "type": "gpu"
+//     // },
+//     {
+//       "key": "    󰑭 Memory       ",
+//       "keyColor": "blue",
+//       "type": "memory"
+//     },
+//     {
+//       "key": "     Wifi         ",
+//       "keyColor": "green",
+//       "type": "wifi"
+//     },
+//     // {
+//     //   "key": "    󰩟 Local IP     ",
+//     //   "keyColor": "cyan",
+//     //   "type": "localip",
+//     //   "compact": true
+//     // },
+//     "break",
+//     {
+//       "type": "custom",
+//       "format": "└──────────────────────────────────────────────────────────────────────────────┘" // `\u001b` is `\033`, or `\e`
+//     },
+//     "break",
+//     {
+//       "type": "colors",
+//       "paddingLeft": 34,
+//       "symbol": "circle",
+//       "block": {
+//         "width": 10
+//       }
+//     }
+//   ]
+// }
+
+// Catpuchin
+//
+//    __          _    __     _       _
+//   / _|        | |  / _|   | |     | |
+//  | |_ __ _ ___| |_| |_ ___| |_ ___| |__
+//  |  _/ _` / __| __|  _/ _ \ __/ __| '_ \
+//  | || (_| \__ \ |_| ||  __/ || (__| | | |
+//  |_| \__,_|___/\__|_| \___|\__\___|_| |_|  Arch
+//
+//  by Sofiya
+
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "color": { "1": "blue", "2": "black" },
+    "source": "$(find \"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/png/\" -name \"*.png\" | shuf -n 1)",
+    //    "source": "$HOME/.config/fastfetch/ascii/rose.txt",
+    "padding": {
+      "top": 4,
+      "right": 5
+    },
+    "height": 18
+  },
+  "display": {
+    "separator": " ▸ " // :
+  },
+  "modules": [
+    {
+      "type": "title"
+    },
+{
+    "type": "custom",
+    "format": "\u001b[33m[ 接続 ]\u001b[0m >> \u001b[31mCYBER_STRIX\u001b[0m // \u001b[33m01\u001b[0m"
+},
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[90m┌────────────────────────────────────────────────────────────┐"
+    },
+    {
+      "type": "os",
+      "key": "",
+      "keycolor": "red"
+    },
+    {
+      "type": "kernel",
+      "key": "",
+      "keycolor": "red"
+    },
+    {
+      "type": "de",
+      "key": "",
+      "keycolor": "green"
+    },
+    {
+      "type": "wm",
+      "key": "",
+      "keycolor": "green"
+    },
+    // {
+    //   "type": "packages",
+    //   "key": "",
+    //   "keycolor": "yellow"
+    // },
+    {
+      "type": "custom",
+      "format": "\u001b[90m├─────────────────────────────────────────────────────────────┤"
+    },
+    {
+      "type": "cpu",
+      "key": "",
+      "keycolor": "blue"
+    },
+    {
+      "type": "host",
+      "key": "",
+      "keycolor": "blue"
+    },
+    {
+      "type": "gpu",
+      "key": "",
+      "keycolor": "magenta"
+    },
+    {
+      "type": "memory",
+      "key": "",
+      "keycolor": "blue"
+    },
+    // {
+    //   "type": "swap",
+    //   "key": "",
+    //   "keycolor": "magenta"
+    // },
+    {
+      "type": "disk",
+      "key": "",
+      "keycolor": "red"
+    },
+    {
+      "type": "battery",
+      "key": "",
+      "keycolor": "red"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m├─────────────────────────────────────────────────────────────┤"
+    },
+    {
+      "type": "uptime",
+      "key": "",
+      "keycolor": "yellow"
+    },
+    {
+      "type": "terminal",
+      "key": "",
+      "keycolor": "yellow"
+    },
+    {
+      "type": "locale",
+      "key": "",
+      "keycolor": "yellow"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m└────────────────────────────────────────────────────────────┘"
+    },
+    {
+      "type": "colors",
+      "paddingLeft": 24,
+      "symbol": "circle",
+      "block": {
+        "width": 10
+      }
+    },
+    "break"
+  ]
+}
