@@ -27,6 +27,13 @@ image_filter    = "triangle"
 image_quality   = 75
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
+prepend_rules = [
+    # Regla para Nikon NEF
+    { mime = "image/tiff", run = "magick" },
+    { mime = "image/x-nikon-nef", run = "magick" },
+    { mime = "image/x-panasonic-raw", run = "magick" },
+    { mime = "image/*", run = "magick" },
+]
 
 [opener]
 edit = [

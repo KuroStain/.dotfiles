@@ -5,52 +5,7 @@
 sleep 0.1s
 
 #Inicio Fastfetch
-# --- Configuración de Centrado para Fastfetch (Ghostty) [v3 Final] ---
-
-function cfetch() {
-    # === CONFIGURACIÓN ===
-    # Ajusta estas variables según tu preferencia visual
-    local LOGO_WIDTH=38
-    local TEXT_WIDTH=45
-    local GAP=2
-    
-    # ¡AQUÍ ESTÁ LA MAGIA!
-    # Aumenta este número para mover todo el bloque hacia la IZQUIERDA.
-    # Un valor entre 10 y 15 suele corregir el efecto óptico.
-    local VISUAL_OFFSET=12 
-
-    # === LÓGICA ===
-    local TOTAL_CONTENT_WIDTH=$((LOGO_WIDTH + GAP + TEXT_WIDTH))
-
-    # Selección del logo
-    local logo_path
-    logo_path=$(shuf -e ~/.config/fastfetch/media/*.png -n 1)
-
-    # Obtener ancho de terminal
-    local term_width
-    term_width=$(tput cols)
-
-    # Calcular el padding matemático y aplicar la corrección visual
-    # Fórmula: ((AnchoTerminal - Contenido) / 2) - Corrección
-    local padding=$(( ((term_width - TOTAL_CONTENT_WIDTH) / 2) - VISUAL_OFFSET ))
-
-    # Protección: Si la pantalla es muy pequeña, el padding no puede ser negativo
-    if [ "$padding" -lt 0 ]; then
-        padding=0
-    fi
-
-    # Ejecución
-    fastfetch \
-        --logo "$logo_path" \
-        --logo-type kitty \
-        --logo-width "$LOGO_WIDTH" \
-        --logo-height 19 \
-        --logo-padding-top 3 \
-        --logo-padding-left "$padding"
-}
-
-cfetch
-
+fastfetch --logo $(ls ~/.config/fastfetch/media/*.png | shuf -n 1) --logo-width 38 --logo-height 19 --logo-padding-top 3 --logo-padding-left 1
 
 # Inicio Starship
 eval "$(starship init bash)"
