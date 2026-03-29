@@ -102,3 +102,13 @@ alias grep='grep --color=auto'
 alias cls='clear'
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export XDG_DATA_HOME="/home/kuroflynn/.local/share"
+
+export XDG_DATA_HOME="/home/kuroflynn/.local/share"
+
+export XDG_DATA_HOME="/home/kuroflynn/.local/share"
