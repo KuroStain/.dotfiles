@@ -37,12 +37,14 @@ prepend_rules = [
 
 [opener]
 edit = [
-	{ run = "${EDITOR:-vi} %s", desc = "$EDITOR",      for = "unix", block = true },
-	{ run = "code %s",          desc = "code",         for = "windows", orphan = true },
-	{ run = "code -w %s",       desc = "code (block)", for = "windows", block = true },
+	{ run = 'nano "$@"', block = true, desc = "Abrir en Terminal" }
+]
+vscode = [
+	{ run = 'code "$@"', orphan = true, desc = "Abrir en VS Code" }
 ]
 play = [
-	{ run = "xdg-open %s1",                desc = "Play", for = "linux" },
+	{ run = 'xdg-open "$@"', desc = "Play", for = "linux" },
+	{ run = 'exiftool "$@"; echo "Presiona Enter"; read _', block = true, desc = "Show EXIF", for = "unix" },
 	{ run = "open %s",                     desc = "Play", for = "macos" },
 	{ run = 'start "" %s1', orphan = true, desc = "Play", for = "windows" },
 	{ run = "termux-open %s1",             desc = "Play", for = "android" },
@@ -56,7 +58,7 @@ open = [
 	{ run = "termux-open %s1", desc = "Open", for = "android" },
 ]
 reveal = [
-	{ run = "xdg-open %d1",         desc = "Reveal", for = "linux" },
+	{ run = 'xdg-open "$(dirname "$@")"', desc = "Reveal", for = "linux" },
 	{ run = "open -R %s1",          desc = "Reveal", for = "macos" },
 	{ run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
 	{ run = "termux-open %d1",      desc = "Reveal", for = "android" },
@@ -71,26 +73,37 @@ download = [
 ]
 
 [open]
+prepend_rules = [
+    # Carpetas → pueden abrirse en VSCode como proyecto
+    { mime = "inode/directory", use = [ "edit", "vscode", "reveal" ] },
+
+    # Texto y código → nano primero (Enter), VSCode disponible en menú
+    { mime = "text/*", use = [ "edit", "vscode", "reveal" ] },
+    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html,md}", use = [ "edit", "vscode", "reveal" ] },
+]
+
 rules = [
-	# Folder
-	{ url = "*/", use = [ "edit", "open", "reveal" ] },
-	# Text
-	{ mime = "text/*", use = [ "edit", "reveal" ] },
-	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
-	# Media
-	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
-	# Archive
-	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
-	# JSON
-	{ mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
-	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
-	# Empty file
-	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
-	# Virtual file system
-	{ mime = "vfs/{absent,stale}", use = "download" },
-	# Fallback
-	{ url = "*", use = [ "open", "reveal" ] },
+    # Carpetas
+    { url = "*/",               use = [ "edit", "vscode", "open", "reveal" ] },
+    { mime = "inode/directory", use = [ "edit", "vscode", "open", "reveal" ] },
+    # Texto y código
+    { mime = "text/*",          use = [ "edit", "vscode", "reveal" ] },
+    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html,md}", use = [ "edit", "vscode", "reveal" ] },
+    # Image
+    { mime = "image/*",         use = [ "open", "reveal" ] },
+    # Media
+    { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+    # Archive
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+    # JSON
+    { mime = "application/{json,ndjson}", use = [ "edit", "vscode", "reveal" ] },
+    { mime = "*/javascript",    use = [ "edit", "vscode", "reveal" ] },
+    # Empty file
+    { mime = "inode/empty",     use = [ "edit", "reveal" ] },
+    # Virtual file system
+    { mime = "vfs/{absent,stale}", use = "download" },
+    # Fallback
+    { url = "*",                use = [ "open", "reveal" ] },
 ]
 
 [tasks]

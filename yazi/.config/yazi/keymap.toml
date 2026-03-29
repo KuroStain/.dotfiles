@@ -1,0 +1,5 @@
+[mgr]
+prepend_keymap = [
+    # Shift+Enter → abre el menú "Open with" (pick)
+    { on = "<S-Enter>", run = "open --interactive", desc = "Abrir con... (menú)" },
+]
