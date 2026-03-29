@@ -16,15 +16,27 @@ Configuración de aplicaciones XDG-compliant:
 Terminal emulador Ghostty:
 - **`config`**: Archivo de configuración principal
 
+#### `fastfetch/`
+Herramienta de información del sistema:
+- **`config.jsonc`**: Configuración de fastfetch
+
 #### `starship.toml`
 Configuración del prompt personalizado Starship
+
+#### `Trolltech.conf`
+Configuración de aplicaciones Qt/KDE
 
 ### `yazi/`
 Gestor de archivos Yazi:
 - **`yazi.toml`**: Configuración principal
 - **`theme.toml`**: Configuración de tema
+- **`keymap.toml`**: Atajos de teclado personalizados
 - **`package.toml`**: Gestión de paquetes/plugins
 - **`flavors/`**: Temas adicionales (incluyendo tokyo-night, ashen, synthwave84 y ayu-dark)
+
+### `environment.d/`
+Variables de entorno personalizadas:
+- **`ghostty.conf`**: Variables de entorno para Ghostty (GTK_IM_MODULE)
 
 ### `Kvantum/`
 Tema y estilos de interfaz gráfica Kvantum:
@@ -56,6 +68,7 @@ ln -s ~/.dotfiles/Kvantum ~/.config/Kvantum
 - **Ghostty**: Terminal moderno y rápido
 - **Yazi**: Gestor de archivos terminal con vista previa
 - **Starship**: Prompt interactivo personalizado
+- **Fastfetch**: Información del sistema visualmente atractiva
 - **Kvantum**: Tema de interfaz gráfica consistente
 
 ## 💡 Notas
