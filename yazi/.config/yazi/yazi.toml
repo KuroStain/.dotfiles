@@ -42,6 +42,9 @@ edit = [
 vscode = [
 	{ run = 'code "$@"', orphan = true, desc = "Abrir en VS Code" }
 ]
+glow = [
+    { run = 'glow "$@"', block = true, desc = "Ver en Glow" }
+]
 play = [
 	{ run = 'xdg-open "$@"', desc = "Play", for = "linux" },
 	{ run = 'exiftool "$@"; echo "Presiona Enter"; read _', block = true, desc = "Show EXIF", for = "unix" },
@@ -73,36 +76,20 @@ download = [
 ]
 
 [open]
-prepend_rules = [
-    # Carpetas → pueden abrirse en VSCode como proyecto
-    { mime = "inode/directory", use = [ "edit", "vscode", "reveal" ] },
-
-    # Texto y código → nano primero (Enter), VSCode disponible en menú
-    { mime = "text/*", use = [ "edit", "vscode", "reveal" ] },
-    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html,md}", use = [ "edit", "vscode", "reveal" ] },
-]
-
 rules = [
-    # Carpetas
+	{ mime = "text/markdown", use = [ "glow", "edit", "vscode", "reveal" ] },
+    { name = "*.md",            use = [ "glow", "edit", "vscode", "reveal" ] },
     { url = "*/",               use = [ "edit", "vscode", "open", "reveal" ] },
     { mime = "inode/directory", use = [ "edit", "vscode", "open", "reveal" ] },
-    # Texto y código
     { mime = "text/*",          use = [ "edit", "vscode", "reveal" ] },
-    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html,md}", use = [ "edit", "vscode", "reveal" ] },
-    # Image
+    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html}", use = [ "edit", "vscode", "reveal" ] },
     { mime = "image/*",         use = [ "open", "reveal" ] },
-    # Media
     { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
-    # Archive
     { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
-    # JSON
     { mime = "application/{json,ndjson}", use = [ "edit", "vscode", "reveal" ] },
     { mime = "*/javascript",    use = [ "edit", "vscode", "reveal" ] },
-    # Empty file
     { mime = "inode/empty",     use = [ "edit", "reveal" ] },
-    # Virtual file system
     { mime = "vfs/{absent,stale}", use = "download" },
-    # Fallback
     { url = "*",                use = [ "open", "reveal" ] },
 ]
 

@@ -84,6 +84,10 @@ alias lsdt3='exa --icons --color=always -T -D -L3'
 alias lst='exa -lhT --icons --color=always'
 alias lsz='exa -s=size -l --icons --color=always'
 
+# Alias para montar/desmontar el disco de Windows
+alias winmount='sudo mount -t ntfs-3g /dev/nvme1n1p3 /mnt/windows'
+alias winumount='sudo umount /mnt/windows'
+
 # === Sistema y Mantenimiento (Arch) ===
 alias update='sudo pacman -Syu'
 alias install='sudo pacman -S'
