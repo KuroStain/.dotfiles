@@ -1,6 +1,6 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+# "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
 ratio          = [ 1, 4, 3 ]
@@ -14,7 +14,7 @@ show_hidden    = false
 show_symlink   = true
 scrolloff      = 5
 mouse_events   = [ "click", "scroll" ]
-title_format   = "Yazi: {cwd}"
+# title_format   = "Yazi: {cwd}"
 
 [preview]
 wrap            = "no"
@@ -77,12 +77,12 @@ download = [
 
 [open]
 rules = [
-	{ mime = "text/markdown", use = [ "glow", "edit", "vscode", "reveal" ] },
-    { name = "*.md",            use = [ "glow", "edit", "vscode", "reveal" ] },
+    { mime = "text/markdown", use = [ "glow", "edit", "vscode", "reveal" ] },
+    { url = "*.md",             use = [ "glow", "edit", "vscode", "reveal" ] },
     { url = "*/",               use = [ "edit", "vscode", "open", "reveal" ] },
     { mime = "inode/directory", use = [ "edit", "vscode", "open", "reveal" ] },
     { mime = "text/*",          use = [ "edit", "vscode", "reveal" ] },
-    { name = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html}", use = [ "edit", "vscode", "reveal" ] },
+    { url = "*.{json,toml,yaml,yml,conf,sh,py,lua,mjs,js,ts,tsx,jsx,css,html}", use = [ "edit", "vscode", "reveal" ] },
     { mime = "image/*",         use = [ "open", "reveal" ] },
     { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
     { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
@@ -94,8 +94,8 @@ rules = [
 ]
 
 [tasks]
-micro_workers    = 10
-macro_workers    = 10
+# micro_workers    = 10
+# macro_workers    = 10
 bizarre_retry    = 3
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 10000, 10000 ]
@@ -103,10 +103,9 @@ suppress_preload = false
 
 [plugin]
 fetchers = [
-	# Mimetype
-	{ id = "mime", url = "*/",         run = "mime.dir", prio = "high" },
-	{ id = "mime", url = "local://*",  run = "mime.local", prio = "high" },
-	{ id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
+    { group = "mime", url = "*/",         run = "mime.dir", prio = "high" },
+    { group = "mime", url = "local://*",  run = "mime.local", prio = "high" },
+    { group = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
 ]
 spotters = [
 	{ url = "*/", run = "folder" },

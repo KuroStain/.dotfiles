@@ -187,7 +187,6 @@ footer  = { fg = "#848bbd" }
 # : File-specific styles {{{
 
 [filetype]
-
 rules = [
 	# Image
 	{ mime = "image/*", fg = "#36f9f6" },
@@ -195,16 +194,14 @@ rules = [
 	{ mime = "{audio,video}/*", fg = "#72f1b8" },
 	# Document
 	{ mime = "application/{pdf,doc,rtf}", fg = "#fede5d" },
-	{ name = "*.{txt,csv,*json*,toml,yml,yaml,xml,html,ini,cfg,conf,pdf,doc,docx,xls,xlsx,ppt,pptx}", fg = "#fede5d" },
+	{ mime = "text/*", fg = "#fede5d" },
 	# Archive
 	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ff7edb" },
-	{ name = "*.img", fg = "#ff7edb" },
+	{ url = "*.img", fg = "#ff7edb" },
 	# Fallback
 	{ url = "*" },
 	{ url = "*/", fg = "#848bbd" },
-	# TODO: remove
-	{ name = "*" },
-	{ name = "*/", fg = "#848bbd" }
 ]
 
 # : }}}
+[filetype]
