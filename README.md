@@ -85,7 +85,9 @@ ln -s ~/.dotfiles/.config/* ~/.config/
 ln -s ~/.dotfiles/yazi ~/.config/yazi
 
 # Kvantum
-ln -s ~/.dotfiles/Kvantum ~/.config/Kvantum
+mkdir -p ~/.config/Kvantum
+ln -s ~/.dotfiles/Kvantum/.config/Kvantum/kvantum.kvconfig ~/.config/Kvantum/kvantum.kvconfig
+ln -s ~/.dotfiles/Kvantum/.config/Kvantum/Otto ~/.config/Kvantum/Otto
 ```
 
 ## 📝 Herramientas Configuradas
