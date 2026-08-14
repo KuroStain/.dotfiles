@@ -94,6 +94,7 @@ alias remove='sudo pacman -Rns'
 alias search='pacman -Ss'
 alias cleanup='sudo pacman -Sc'
 alias restart_plasma='systemctl --user restart plasma-plasmashell'
+alias pacrefresh='sudo reflector --country Chile,Argentina,Brazil --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syyu'
 
 # Navegación y herramientas
 alias cd..='cd ..'
@@ -104,5 +105,24 @@ alias hist='history | grep'
 alias grep='grep --color=auto'
 alias cls='clear'
 
-# Tmux
+#alias comfy='cd ~/Local-IA/ComfyUI && source venv/bin/activate && python main.py & sleep 5 && xdg-open http://127.0.0.1:8188'
+
+comfy() (
+    cd "$HOME/Local-IA/ComfyUI" || exit 1
+    source venv/bin/activate
+
+    (
+        sleep 5
+        xdg-open http://127.0.0.1:8188 >/dev/null 2>&1
+    ) &
+
+    exec python main.py
+)
+. "$HOME/.local/bin/env"
+
+# Tmux / Dev layout
 alias tdl='devlayout'
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -10,6 +10,10 @@ Archivos de configuración de la shell Bash:
 
 - **`.bash_profile`**: Archivo de inicio para sesiones de login
 - **`.bashrc`**: Configuración interactiva de Bash
+  - Inicialización de Bun y binarios locales (`~/.local/bin/env`)
+  - Alias `pacrefresh` para actualizar los mirrors regionales de Arch Linux
+  - Función `comfy` para iniciar ComfyUI y abrir su interfaz web
+  - Alias `tdl` para cargar el layout de desarrollo de tmux
 
 ### `.config/`
 
@@ -33,7 +37,20 @@ Configuración del prompt personalizado Starship
 
 #### `Trolltech.conf`
 
-Configuración de aplicaciones Qt/KDE
+Paleta de respaldo para aplicaciones Qt, sincronizada con el esquema de color de Plasma.
+
+### `plasma/`
+
+Configuración del escritorio KDE Plasma:
+
+- **`.config/kdeglobals`**: Esquema de color `SkwdMatugenAlt`, paleta oscura con acentos azul/coral y preferencias generales de KDE
+- **`.config/plasma-org.kde.plasma.desktop-appletsrc`**: Escritorios, paneles y widgets; incluye Launchpad Plasma, bandeja del sistema, reloj, controles multimedia, visualizadores de audio y Panel Colorizer
+- **`.config/kwinrc`**: Efectos de KWin, mosaico 25/50/25 con separación de 4 px, decoración Aurorae y escala XWayland de 1.25
+- **`.config/kglobalshortcutsrc`**: Atajos de escritorios y ventanas; `Alt+W` abre Skwd y los atajos directos de KZones están deshabilitados
+- **`.config/kscreenlockerrc`**: Bloqueo automático deshabilitado y fondo Materia Dark
+- **`.config/plasmarc`**: Catálogo local de fondos de pantalla
+
+La disposición actual sustituye Andromeda Launcher por Launchpad Plasma y amplía la composición del panel con widgets adicionales. Algunos elementos requieren plasmoides de terceros instalados, como Panel Colorizer, Audio Visualizer y PlasMusic Toolbar.
 
 ### `yazi/`
 
@@ -81,6 +98,9 @@ ln -s ~/.dotfiles/bash/.bashrc ~/.bashrc
 # Config
 ln -s ~/.dotfiles/.config/* ~/.config/
 
+# KDE Plasma
+ln -s ~/.dotfiles/plasma/.config/* ~/.config/
+
 # Yazi
 ln -s ~/.dotfiles/yazi ~/.config/yazi
 
@@ -98,6 +118,9 @@ ln -s ~/.dotfiles/Kvantum/.config/Kvantum/Otto ~/.config/Kvantum/Otto
 - **Starship**: Prompt interactivo personalizado
 - **Fastfetch**: Información del sistema visualmente atractiva
 - **Kvantum**: Tema de interfaz gráfica consistente
+- **KDE Plasma / KWin**: Tema, paneles, widgets, atajos, efectos y mosaico de ventanas
+- **Bun**: Runtime y gestor de paquetes disponible desde Bash
+- **ComfyUI**: Función de shell para iniciar la instancia local
 
 ## 💡 Notas
 
