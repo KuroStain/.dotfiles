@@ -74,14 +74,43 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
+
+# ALIAS
+
+# ─────────────────────────────
 # Exa
-alias ls='exa --icons -l --color=always --git'
-alias lsdt='exa --icons --color=always -T -D'
-alias lsdt1='exa --icons --color=always -T -D -L1'
-alias lsdt2='exa --icons --color=always -T -D -L2'
-alias lsdt3='exa --icons --color=always -T -D -L3'
-alias lst='exa -lhT --icons --color=always'
-alias lsz='exa -s=size -l --icons --color=always'
+# ─────────────────────────────
+
+# Listado rápido
+alias l='exa --icons --color=always --group-directories-first'
+
+# Listado detallado
+alias ls='exa -lh --icons --color=always --git --group-directories-first'
+
+# Listado detallado + archivos ocultos
+alias la='exa -lha --icons --color=always --git --group-directories-first'
+
+# Ordenar por tamaño, más grandes primero
+alias lsz='exa -lh --icons --color=always --git --sort=size --reverse --group-directories-first'
+
+# Ordenar por modificación, más recientes primero
+alias lsm='exa -lh --icons --color=always --git --sort=modified --reverse --group-directories-first'
+
+# Solo directorios
+alias lsd='exa -D --icons --color=always --group-directories-first'
+
+# Árbol incluyendo archivos ocultos
+alias lta='exa -Ta --icons --color=always --group-directories-first'
+
+# Árbol con profundidad configurable
+lt() {
+    exa -T --icons --color=always --group-directories-first --level="${1:-2}"
+}
+
+# Árbol solo de directorios con profundidad configurable
+ltd() {
+    exa -T -D --icons --color=always --group-directories-first --level="${1:-2}"
+}
 
 # Disco de Windows
 alias winmount='sudo mount -t ntfs-3g /dev/nvme1n1p3 /mnt/windows'
@@ -119,9 +148,6 @@ comfy() (
     exec python main.py
 )
 . "$HOME/.local/bin/env"
-
-# Tmux / Dev layout
-alias tdl='devlayout'
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"

@@ -289,6 +289,7 @@ activate widget 141=none,none,Activar el elemento gráfico Bandeja del sistema
 activate widget 206=none,none,Activar el elemento gráfico Andromeda Launcher
 activate widget 218=none,none,Activar el elemento gráfico Gestor de tareas con solo iconos
 activate widget 257=none,none,Activar el elemento gráfico Paginador
+activate widget 259=none,none,Activar el elemento gráfico Separador de márgenes
 activate widget 287=none,none,Activar el elemento gráfico Reloj digital
 activate widget 288=none,none,Activar el elemento gráfico Gestor de tareas con solo iconos
 activate widget 339=none,none,Activar el elemento gráfico Launchpad Plasma
