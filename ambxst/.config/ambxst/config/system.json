@@ -1,0 +1,48 @@
+{
+    "disks": [
+        "/"
+    ],
+    "idle": {
+        "general": {
+            "after_sleep_cmd": "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'",
+            "before_sleep_cmd": "loginctl lock-session",
+            "lock_cmd": "ambxst lock"
+        },
+        "listeners": [
+            {
+                "onResume": "ambxst brightness -r",
+                "onTimeout": "ambxst brightness 10 -s",
+                "timeout": 150
+            },
+            {
+                "onTimeout": "loginctl lock-session",
+                "timeout": 300
+            },
+            {
+                "onResume": "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'",
+                "onTimeout": "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'",
+                "timeout": 330
+            },
+            {
+                "onTimeout": "ambxst suspend",
+                "timeout": 1800
+            }
+        ]
+    },
+    "ocr": {
+        "chi_sim": false,
+        "chi_tra": false,
+        "eng": false,
+        "jpn": false,
+        "kor": false,
+        "lat": false,
+        "spa": true
+    },
+    "pomodoro": {
+        "autoStart": false,
+        "restTime": 300,
+        "syncSpotify": true,
+        "workTime": 1500
+    },
+    "updateServiceEnabled": true
+}
