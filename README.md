@@ -1,133 +1,163 @@
 # Dotfiles
 
-Configuración personalizada de entorno de desarrollo y sistema para Linux.
+Configuración personal de entorno de desarrollo y escritorio para Linux. El repositorio conserva dos configuraciones de escritorio: la actual, basada en **Hyprland + Ambxst**, y la configuración de **KDE Plasma / Project Nightjar**.
 
-## 📁 Estructura
+## Checkpoints
 
-### `bash/`
+- **`hyprland-v1.0.0`**: checkpoint estable de la configuración actual de Hyprland + Ambxst.
+- **`plasma-v1.0.0`**: baseline de Project Nightjar para KDE Plasma.
 
-Archivos de configuración de la shell Bash:
+## Estructura
 
-- **`.bash_profile`**: Archivo de inicio para sesiones de login
-- **`.bashrc`**: Configuración interactiva de Bash
-  - Inicialización de Bun y binarios locales (`~/.local/bin/env`)
-  - Alias `pacrefresh` para actualizar los mirrors regionales de Arch Linux
-  - Función `comfy` para iniciar ComfyUI y abrir su interfaz web
-  - Alias `tdl` para cargar el layout de desarrollo de tmux
+```text
+.
+├── .config/
+│   ├── fastfetch/config.jsonc
+│   ├── ghostty/
+│   └── starship.toml
+├── ambxst/
+│   ├── .config/ambxst/
+│   │   ├── binds.json
+│   │   ├── config/
+│   │   └── presets/active_preset
+│   ├── .local/bin/ambxst
+│   └── .local/share/ambxst/no-ddc/ddcutil
+├── bash/
+├── environment.d/
+│   ├── cursor.conf
+│   └── ghostty.conf
+├── hypr/
+│   └── .config/hypr/
+│       ├── hyprland.lua
+│       ├── hypridle.conf
+│       ├── hyprlauncher.conf
+│       └── hyprlock.conf
+├── Kvantum/
+├── nano/
+├── plasma/
+└── yazi/
+```
 
-### `.config/`
+### `hypr/`
 
-Configuración de aplicaciones XDG-compliant:
+Configuración de Hyprland y utilidades asociadas:
 
-#### `ghostty/`
+- **`hyprland.lua`**: configuración principal en Lua. Define Ghostty mediante UWSM como terminal, Dolphin como gestor de archivos y Hyprlauncher como lanzador.
+- **`hypridle.conf`**: bloqueo a los 10 minutos, DPMS a los 11 minutos y suspensión a los 30 minutos.
+- **`hyprlock.conf`**: pantalla de bloqueo con captura del escritorio desenfocada.
+- **`hyprlauncher.conf`**: ejecuta aplicaciones de escritorio con el prefijo `uwsm app --`.
 
-Terminal emulador Ghostty:
+La disposición de pantallas versionada es específica para este equipo:
 
-- **`config`**: Archivo de configuración principal
+- `HDMI-A-1`: Samsung Odyssey G5 a `2560x1440@144`, escala `1`; recibe los workspaces 1–5.
+- `eDP-2`: panel del notebook a `2560x1600@240`, escala `1.25`; recibe los workspaces 6–10.
 
-#### `fastfetch/`
+Hyprland carga la integración instalada de Ambxst desde `~/.local/share/ambxst/hyprland.lua`. Después de esa carga se aplica `follow_mouse = 0`, de modo que el foco queda controlado por teclado o clic y no por hover. El layout base es `dwindle`, con `preserve_split`, animaciones, blur, bordes redondeados y reglas para ignorar solicitudes de maximizado y evitar problemas de arrastre en XWayland.
 
-Herramienta de información del sistema:
+#### Atajos principales de Hyprland
 
-- **`config.jsonc`**: Configuración de fastfetch
+Estos binds están definidos directamente en `hyprland.lua`:
 
-#### `starship.toml`
+- `Super+Q`: abrir Ghostty mediante UWSM.
+- `Super+E`: abrir Dolphin.
+- `Super+R`: abrir Hyprlauncher.
+- `Super+C`: cerrar la ventana activa.
+- `Super+V`: alternar modo flotante.
+- `Super+P`: alternar pseudotiling.
+- `Super+J`: alternar la dirección del split en `dwindle`.
+- `Super+L`: bloquear con Hyprlock.
+- `Super+1…0`: cambiar a los workspaces 1–10.
+- `Super+Shift+1…0`: mover la ventana activa a los workspaces 1–10.
+- `Super` + arrastre con botón izquierdo/derecho: mover/redimensionar ventanas.
 
-Configuración del prompt personalizado Starship
+Los binds de foco con `Super` + flechas y los del workspace especial están comentados en esta capa para evitar duplicarlos con Ambxst.
 
-#### `Trolltech.conf`
+### `ambxst/`
 
-Paleta de respaldo para aplicaciones Qt, sincronizada con el esquema de color de Plasma.
+Ambxst está gestionado desde este repositorio mediante la estructura de paquetes de GNU Stow. Sus enlaces simbólicos apuntan desde `~/.config/ambxst` y `~/.local/...` hacia `ambxst/`, por lo que los ajustes editados por Ambxst quedan bajo control de versiones en los dotfiles.
 
-### `plasma/`
+La configuración versionada incluye:
 
-Configuración del escritorio KDE Plasma:
+- Barra superior fijada al inicio y revelable por hover; dock y escritorio de Ambxst deshabilitados.
+- Overview de 5 columnas por 2 filas y 10 workspaces no dinámicos.
+- Tema oscuro con `Roboto Condensed` e `Iosevka Nerd Font Mono`.
+- Ajustes de compositor sincronizados con Ambxst: redondeo, gaps, sombras y blur.
+- Configuración de bloqueo, energía, OCR en español y binds personalizados.
 
-- **`.config/kdeglobals`**: Esquema de color `SkwdMatugenAlt`, paleta oscura con acentos azul/coral y preferencias generales de KDE
-- **`.config/plasma-org.kde.plasma.desktop-appletsrc`**: Escritorios, paneles y widgets; incluye Launchpad Plasma, bandeja del sistema, reloj, controles multimedia, visualizadores de audio y Panel Colorizer
-- **`.config/kwinrc`**: Efectos de KWin, mosaico 25/50/25 con separación de 4 px, decoración Aurorae y escala XWayland de 1.25
-- **`.config/kglobalshortcutsrc`**: Atajos de escritorios y ventanas; `Alt+W` abre Skwd y los atajos directos de KZones están deshabilitados
-- **`.config/kscreenlockerrc`**: Bloqueo automático deshabilitado y fondo Materia Dark
-- **`.config/plasmarc`**: Catálogo local de fondos de pantalla
+Entre los binds propios de Ambxst presentes en `binds.json` están `Super+D` para el dashboard, `Super+Tab` para el overview, `Super+Esc` para el menú de energía, `Super+Shift+S` para capturas, `Super+Shift+R` para grabación y `Super+Alt+B` para recargar Ambxst. El archivo también contiene la navegación y movimiento de ventanas/workspaces, controles multimedia, brillo y acciones al cerrar o abrir la tapa.
 
-La disposición actual sustituye Andromeda Launcher por Launchpad Plasma y amplía la composición del panel con widgets adicionales. Algunos elementos requieren plasmoides de terceros instalados, como Panel Colorizer, Audio Visualizer y PlasMusic Toolbar.
+#### Wrapper de Ambxst y bloqueo de DDC/CI
 
-### `yazi/`
+`ambxst/.local/bin/ambxst` es el punto de entrada local. El wrapper antepone `~/.local/share/ambxst/no-ddc` a `PATH` y después delega todos los argumentos al binario real `/usr/local/bin/ambxst`.
 
-Gestor de archivos Yazi:
+Dentro de ese directorio se instala un shim llamado `ddcutil` que termina correctamente sin ejecutar ninguna operación. Así, cualquier invocación de `ddcutil` hecha desde Ambxst se convierte en un no-op y se evita que Ambxst intente controlar por DDC/CI el monitor Samsung Odyssey G5. El shim solo afecta a los procesos iniciados a través del wrapper; no reemplaza globalmente el `ddcutil` del sistema.
 
-- **`yazi.toml`**: Configuración principal
-  - Deshabilitado schema de validación (línea comentada)
-  - Deshabilitado título personalizado del gestor
-  - Optimizados settings de plugins con formato correcto
-  - Cambio de atributo `name` a `url` en reglas de apertura
-  - Deshabilitados workers (micro/macro)
-- **`theme.toml`**: Configuración de tema
-- **`keymap.toml`**: Atajos de teclado personalizados
-- **`package.toml`**: Gestión de paquetes/plugins
-- **`flavors/`**: Temas adicionales
-  - **`synthwave84.yazi/flavor.toml`**: Tema Synthwave 84 optimizado
-    - Simplificado sistema de reglas de MIME types
-    - Eliminadas reglas redundantes y TODOs
-    - Cambio de `name` a `url` para mejor compatibilidad
-    - Cambio de `mime = "text/*"` para mejor cobertura de archivos de texto
+### `plasma/` — Project Nightjar
+
+La configuración de KDE Plasma se mantiene como Project Nightjar y conserva su checkpoint **`plasma-v1.0.0`**:
+
+- **`.config/kdeglobals`**: esquema `MoeDark`, look and feel `Moe-Dark`, iconos `Slot-Symbolic-Dark-Icons`, Ghostty como terminal y preferencias generales de KDE.
+- **`.config/plasma-org.kde.plasma.desktop-appletsrc`**: escritorios, panel y widgets; incluye Launchpad Plasma, CatWalk, bandeja del sistema, reloj, Panel Colorizer y PlasMusic Toolbar.
+- **`.config/kwinrc`**: efectos de KWin, mosaico 25/50/25 con separación de 4 px, layouts de KZones, decoración Aurorae y escala XWayland de 1.25.
+- **`.config/kglobalshortcutsrc`**: atajos de Plasma y KWin; `Alt+W` abre Skwd y los atajos directos de KZones están deshabilitados.
+- **`.config/kscreenlockerrc`**: bloqueo automático deshabilitado y fondo Materia Dark.
+- **`.config/plasmarc`**: catálogo local de fondos de pantalla.
+
+Launchpad Plasma, CatWalk, Panel Colorizer, PlasMusic Toolbar y el plugin de fondos de video aparecen referenciados en la configuración; deben existir en el sistema para reproducir el escritorio completo.
 
 ### `environment.d/`
 
-Variables de entorno personalizadas:
+Variables de entorno de sesión:
 
-- **`ghostty.conf`**: Variables de entorno para Ghostty (GTK_IM_MODULE)
+- **`cursor.conf`**: selecciona el cursor **Bibata-Modern-Ice** con tamaño 24.
+- **`ghostty.conf`**: establece `GTK_IM_MODULE=simple`.
 
-### `Kvantum/`
+### Otros paquetes
 
-Tema y estilos de interfaz gráfica Kvantum:
+- **`bash/`**: perfil y configuración interactiva de Bash; incluye la inicialización de Bun y binarios locales, `pacrefresh`, la función `comfy` y el alias `tdl`.
+- **`.config/ghostty/`**: configuración y temas de Ghostty.
+- **`.config/fastfetch/`**: presentación de información del sistema.
+- **`.config/starship.toml`**: prompt de Starship.
+- **`yazi/`**: configuración, keymap, paquetes y flavors de Yazi.
+- **`Kvantum/`**: configuración de Kvantum y tema Otto.
+- **`nano/`**: configuración de Nano.
 
-- **`.config/Kvantum/kvantum.kvconfig`**: Configuración principal de Kvantum
-- **`.config/Kvantum/Otto/Otto.kvconfig`**: Configuración del tema Otto
-- **`.config/Kvantum/Otto/Otto.svg`**: Recursos visuales del tema
+## Gestión de enlaces
 
-## 🚀 Instalación
-
-### Vinculación simbólica manual
+Los paquetes con una jerarquía equivalente a `$HOME` pueden enlazarse desde la raíz del repositorio con Stow. Para el escritorio Hyprland + Ambxst:
 
 ```bash
-# Bash
-ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
-ln -s ~/.dotfiles/bash/.bashrc ~/.bashrc
-
-# Config
-ln -s ~/.dotfiles/.config/* ~/.config/
-
-# KDE Plasma
-ln -s ~/.dotfiles/plasma/.config/* ~/.config/
-
-# Yazi
-ln -s ~/.dotfiles/yazi ~/.config/yazi
-
-# Kvantum
-mkdir -p ~/.config/Kvantum
-ln -s ~/.dotfiles/Kvantum/.config/Kvantum/kvantum.kvconfig ~/.config/Kvantum/kvantum.kvconfig
-ln -s ~/.dotfiles/Kvantum/.config/Kvantum/Otto ~/.config/Kvantum/Otto
+cd ~/.dotfiles
+stow hypr ambxst
 ```
 
-## 📝 Herramientas Configuradas
+Esto crea, entre otros, los enlaces de `~/.config/hypr`, `~/.config/ambxst`, `~/.local/bin/ambxst` y el shim de `ddcutil`. Los demás directorios empaquetados con la misma estructura (`bash`, `plasma`, `yazi`, `Kvantum` y `nano`) pueden gestionarse del mismo modo y de forma independiente.
 
-- **Bash**: Shell configurada con perfil personalizado
-- **Ghostty**: Terminal moderno y rápido
-- **Yazi**: Gestor de archivos terminal con vista previa
-- **Starship**: Prompt interactivo personalizado
-- **Fastfetch**: Información del sistema visualmente atractiva
-- **Kvantum**: Tema de interfaz gráfica consistente
-- **KDE Plasma / KWin**: Tema, paneles, widgets, atajos, efectos y mosaico de ventanas
-- **Bun**: Runtime y gestor de paquetes disponible desde Bash
-- **ComfyUI**: Función de shell para iniciar la instancia local
+Los archivos de `environment.d/` se enlazan explícitamente dentro de `~/.config/environment.d/`:
 
-## 💡 Notas
+```bash
+mkdir -p ~/.config/environment.d
+ln -s ~/.dotfiles/environment.d/cursor.conf ~/.config/environment.d/cursor.conf
+ln -s ~/.dotfiles/environment.d/ghostty.conf ~/.config/environment.d/ghostty.conf
+```
 
-- Este repositorio usa Git para versionado y mantenimiento
-- Las configuraciones están organizadas siguiendo el estándar XDG Base Directory
-- Los temas (Kvantum, Yazi) son personalizables según preferencias
+La configuración común almacenada directamente en `.config/` también se enlaza de forma explícita:
 
-## 📜 Licencia
+```bash
+ln -s ~/.dotfiles/.config/ghostty ~/.config/ghostty
+ln -s ~/.dotfiles/.config/fastfetch ~/.config/fastfetch
+ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
+ln -s ~/.dotfiles/.config/Trolltech.conf ~/.config/Trolltech.conf
+```
+
+Antes de crear los enlaces, conviene retirar o respaldar cualquier archivo real que ya ocupe esas rutas.
+
+## Notas
+
+- La configuración de monitores, fondos y algunas rutas es específica del equipo y del usuario actual.
+- El tag `hyprland-v1.0.0` identifica el estado consolidado de Hyprland + Ambxst descrito aquí.
+- Las configuraciones siguen, en lo posible, la jerarquía XDG y se versionan como enlaces simbólicos administrados desde este repositorio.
+
+## Licencia
 
 Estos dotfiles son de uso personal. Siéntete libre de adaptarlos a tus necesidades.
