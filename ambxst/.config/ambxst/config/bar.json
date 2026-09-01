@@ -13,14 +13,14 @@
       0
     ]
   ],
-  "frameEnabled": true,
+  "frameEnabled": false,
   "frameThickness": 8,
   "pinnedOnStartup": true,
   "hoverToReveal": true,
   "hoverRegionHeight": 8,
   "showPinButton": true,
   "availableOnFullscreen": true,
-  "use12hFormat": false,
+  "use12hFormat": true,
   "containBar": false,
   "keepBarShadow": false,
   "keepBarBorder": false
