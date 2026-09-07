@@ -37,22 +37,23 @@ prepend_rules = [
 
 [opener]
 edit = [
-	{ run = 'nano "$@"', block = true, desc = "Abrir en Terminal" }
+    { run = "nano %s", block = true, desc = "Abrir en Terminal" }
 ]
 vscode = [
-	{ run = 'code "$@"', orphan = true, desc = "Abrir en VS Code" }
+    { run = "code %s", orphan = true, desc = "Abrir en VS Code" }
 ]
+
 glow = [
-    { run = 'glow "$@"', block = true, desc = "Ver en Glow" }
+    { run = "glow -p %s", block = true, desc = "Ver en Glow" }
 ]
 play = [
-	{ run = 'xdg-open "$@"', desc = "Play", for = "linux" },
-	{ run = 'exiftool "$@"; echo "Presiona Enter"; read _', block = true, desc = "Show EXIF", for = "unix" },
-	{ run = "open %s",                     desc = "Play", for = "macos" },
-	{ run = 'start "" %s1', orphan = true, desc = "Play", for = "windows" },
-	{ run = "termux-open %s1",             desc = "Play", for = "android" },
-	{ run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
-	{ run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
+    { run = "xdg-open %s1", desc = "Play", for = "linux" },
+    { run = "exiftool %s; echo 'Presiona Enter'; read _", block = true, desc = "Show EXIF", for = "unix" },
+    { run = "open %s", desc = "Play", for = "macos" },
+    { run = 'start "" %s1', orphan = true, desc = "Play", for = "windows" },
+    { run = "termux-open %s1", desc = "Play", for = "android" },
+    { run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
+    { run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
 ]
 open = [
 	{ run = "xdg-open %s1",    desc = "Open", for = "linux" },
@@ -61,11 +62,11 @@ open = [
 	{ run = "termux-open %s1", desc = "Open", for = "android" },
 ]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$@")"', desc = "Reveal", for = "linux" },
-	{ run = "open -R %s1",          desc = "Reveal", for = "macos" },
-	{ run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
-	{ run = "termux-open %d1",      desc = "Reveal", for = "android" },
-	{ run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
+    { run = "xdg-open %d1", desc = "Reveal", for = "linux" },
+    { run = "open -R %s1", desc = "Reveal", for = "macos" },
+    { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
+    { run = "termux-open %d1", desc = "Reveal", for = "android" },
+    { run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
 ]
 extract = [
 	{ run = "ya pub extract --list %s", desc = "Extract here" },

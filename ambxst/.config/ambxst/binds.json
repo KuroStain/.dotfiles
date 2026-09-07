@@ -2405,6 +2405,28 @@
                 }
             ],
             "name": "Move Column to Workspace 10"
+        },
+        {
+            "actions": [
+                {
+                    "args": {
+                        "command": "ambxst run shortcuts"
+                    },
+                    "id": "command.run",
+                    "layouts": [
+                    ]
+                }
+            ],
+            "enabled": true,
+            "keys": [
+                {
+                    "key": "SLASH",
+                    "modifiers": [
+                        "SUPER"
+                    ]
+                }
+            ],
+            "name": "Atajos de teclado"
         }
     ],
     "defaultAmbxstBinds": {
