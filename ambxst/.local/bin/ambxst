@@ -1,7 +1,1 @@
-#!/usr/bin/env bash
-
-# Ambxst + Samsung Odyssey workaround:
-# no permitir control DDC/CI desde Ambxst.
-export PATH="$HOME/.local/share/ambxst/no-ddc:$PATH"
-
-exec /usr/local/bin/ambxst "$@"
+ambxst-hypr

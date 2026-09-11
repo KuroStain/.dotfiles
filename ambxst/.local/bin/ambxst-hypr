@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Evita que Ambxst controle monitores externos mediante DDC/CI.
+export PATH="$HOME/.local/share/ambxst/no-ddc:$PATH"
+
+exec /usr/local/bin/ambxst "$@"
