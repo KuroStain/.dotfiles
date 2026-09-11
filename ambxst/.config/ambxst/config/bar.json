@@ -23,5 +23,8 @@
   "use12hFormat": true,
   "containBar": false,
   "keepBarShadow": false,
-  "keepBarBorder": false
+  "keepBarBorder": false,
+  "systrayExclude": [
+    "blueman"
+  ]
 }
